@@ -5,16 +5,16 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA18MzyZfOUPcyXto0bCoiv-RqtqDAa4QM",
-  authDomain: "tutorechat.firebaseapp.com",
-  projectId: "tutorechat",
-  storageBucket: "tutorechat.appspot.com",
-  messagingSenderId: "405161159381",
-  appId: "1:405161159381:web:c782aa166224d830c6505c"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 
 const app = initializeApp(firebaseConfig);
-export const auth=getAuth();
-export const db=getFirestore();
-export const storage=getStorage();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
