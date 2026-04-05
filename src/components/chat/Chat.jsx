@@ -6,7 +6,7 @@ import { useChatStore } from '../../lib/useChatStore'
 import { useUserStore } from '../../lib/userStore'
 import MessageItem from './MessageItem'
 import MessageInput from './MessageInput'
-import { FiPhone, FiVideo, FiInfo } from 'react-icons/fi'
+import TopBar from './TopBar'
 
 export default function Chat() {
   const [chat,setChat]=useState()
@@ -29,20 +29,7 @@ export default function Chat() {
   
   return (
     <div className='chat'>
-      <div className="top">
-        <div className="user">
-          <img src={user?.avatar||"./avatar.png"} alt="" />
-          <div className="texts">
-            <span>{user?.username}</span>
-            <p>vous utilisez volo@chat</p>
-          </div>
-        </div>
-        <div className="icons">
-          <FiPhone className="icon" />
-          <FiVideo className="icon" />
-          <FiInfo className="icon" />
-        </div>
-      </div>
+      <TopBar user={user} />
       <div className="center">
         {chat?.messages?.map(message => (
           <MessageItem key={message?.createdAt} message={message} currentUser={currentUser} />
