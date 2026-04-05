@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./chatlist.css"
 import AddUser from './addUser/AddUser'
+import ChatListItem from './ChatListItem'
 import { useUserStore } from '../../../lib/userStore'
 import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { db } from '../../../lib/firebase'
 import { useChatStore } from '../../../lib/useChatStore'
+import { FiSearch, FiPlus, FiMinus } from 'react-icons/fi'
 
 export default function Chatlist() {
     const [chats,setChats]=useState([])
@@ -59,28 +61,17 @@ export default function Chatlist() {
     <div className='chatlist'>
         <div className="search">
             <div className="searchBar">
-                <img src="./search.png" alt="" />
+                <FiSearch className='icon searchIcon'/>
                 <input type="text" placeholder='Search' onChange={(e)=>setInput(e.target.value)}/>
             </div>
-            <img src={addMode ?"./minus.png":"./plus.png"} alt="" className='add'onClick={()=>setAddmode((prev)=>!prev)}/>
+            <button className='add' onClick={()=>setAddmode((prev)=>!prev)} aria-label={addMode?"Fermer":"Ajouter"}>
+              {addMode ? <FiMinus/> : <FiPlus/>}
+            </button>
         </div>
         {filiteredChat.map((chat)=>(
-        <div className='item'key={chat.chatId}onClick={()=>handleSelect(chat)}
-        style={{
-          backgroundColor:chat?.isSeen ? "transparent":"#5183fe",
-        }}
-        > 
-           <img src={chat.user.blocked.includes(currentUser.id)?"./avatar.png":chat.user.avatar||"./avatar.png"} alt="" />
-           <div className="texts">
-            <span>{chat.user.blocked.includes(currentUser.id)?"user": chat.user.username}</span>
-            <p>{chat.lastMessage}</p>
-           </div>
-        </div>
+          <ChatListItem key={chat.chatId} chat={chat} currentUser={currentUser} onSelect={handleSelect} />
         ))}
-        {
-          addMode && <AddUser/>
-        }
-        
+        {addMode && <AddUser/>}
     </div>
   )
 }
