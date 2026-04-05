@@ -1,166 +1,32 @@
-.chat{
-    flex: 2;
-    border-left: 1px solid #dddddd35;
-    border-right: 1px solid #dddddd35;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.chat{ flex: 2; border-left: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); height: 100%; display: flex; flex-direction: column; }
 
-    .top{
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid #dddddd35;
-        height: fit-content;
+.chat .top{ padding: 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); }
+.chat .top .user{ display:flex; align-items:center; gap:12px }
+.chat .top .user img{ width:48px; height:48px; border-radius:50%; object-fit:cover }
+.chat .top .texts span{ font-size:16px; font-weight:700 }
+.chat .top .texts p{ font-size:13px; color:var(--muted); margin:0 }
+.chat .top .icons{ display:flex; gap:12px }
+.chat .top .icons .icon{ font-size:18px; color:var(--muted); cursor:pointer }
 
-        .user{
-            display: flex;
-            align-items: center;
-            gap: 20px;
+.chat .center{ padding: 16px; flex:1; overflow:auto; display:flex; flex-direction:column; gap:12px }
+.chat .message{ max-width:75%; display:flex; gap:12px }
+.chat .message.own{ align-self:flex-end }
+.chat .message img{ width:30px; height:30px; border-radius:50% }
+.chat .message .texts{ display:flex; flex-direction:column; gap:6px }
+.chat .message .texts img{ width:100%; height:240px; border-radius:8px; object-fit:cover }
+.chat .message .texts p{ padding:12px; background-color: rgba(17,25,40,0.3); border-radius:8px }
+.chat .message.own .texts p{ background-color: var(--accent) }
 
-            img{
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-            .texts{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
+.chat .bottom{ padding: 12px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); gap:12px }
+.chat .bottom .icons{ display:flex; gap:12px }
+.chat .bottom .icons .icon{ font-size:18px; color:var(--muted); cursor:pointer }
+.chat .bottom input{ flex:1; background-color: rgba(17,25,40,0.5); border:none; outline:none; padding:12px; border-radius:8px; font-size:14px; color:var(--text) }
+.chat .bottom .picker{ position: absolute; bottom: 60px; left: 0 }
+.chat .sendButton{ background-color:var(--accent); color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer }
+.chat .sendButton:disabled{ background-color: #7fa1ff77; cursor:not-allowed }
 
-                span{
-                    font-size: 18px;
-                    font-weight: bold;
-                }
-                p{
-                    font-size: 14px;
-                    font-weight: 300;
-                    color:#a5a5a5;
-                }
-            }
-        }
-        .icons{
-            display: flex;
-            gap: 20px;
-
-            img{
-                height: 20px;
-                width: 20px;
-                cursor: pointer;
-            }
-        }
-    }
-    .center{
-        padding: 20px;
-        flex:1;
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        .message{
-            max-width: 70%;
-            display: flex;
-            gap: 20px;
-            &.own{
-                align-self: flex-end;
-
-                .texts{
-                    p{
-                        background-color:#5183fe;
-                    }
-                }
-            }
-            img{
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-            }
-            .texts{
-                flex: 1px;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-
-                img{
-                    width: 100%;
-                    height: 300px;
-                    border-radius: 10px;
-                    object-fit: cover;
-                }
-
-                p{
-                    padding: 20px;
-                    background-color: rgba(17, 25, 40, 0.3);
-                    border-radius: 10px;
-                }
-
-            }
-        }
-    }
-    .bottom{
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid #dddddd35;
-        gap: 20px;
-        margin-top:auto ;
-
-        .icons{
-            display: flex;
-            gap: 20px;
-
-            img{
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-            }
-        }
-        input{
-            flex: 1px;
-            background-color: rgba(17,25,40,0.5);
-            border: none;
-            outline: none;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 16px;
-            color:white;
-
-            &:disabled{
-                cursor: not-allowed;
-            }
-        }
-        .emoji{
-            position: relative;
-
-            .picker{
-                position: absolute;
-                bottom: 50px;
-                left: 0;
-            }
-        }
-        .sendButton{
-            background-color:#5183fe;
-            color:white;
-            padding: 10px 20px;
-            border:none;
-            border-radius: 5px;
-            cursor: pointer;
-
-            &:disabled{
-                background-color:#5182fe8d;
-                cursor: not-allowed;
-            }
-        }
-        .emoji{
-                img{
-                    width: 20px;
-                    height: 20px;
-                    cursor: pointer;
-                } 
-        }
-    }
+@media (max-width: 600px){
+  .chat{ border-left:none; border-right:none }
+  .chat .center{ padding:10px }
+  .chat .message .texts img{ height:180px }
 }
